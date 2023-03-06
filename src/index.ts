@@ -6,9 +6,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env`,
 });
-console.log(process.env.PORT);
+console.log(process.env.NODE_ENV);
 const PORT = process.env.PORT || 5000;
 const app = express();
 

@@ -17,7 +17,7 @@
   "scripts": {
     "tsc": "tsc",
     "start": "tsc && node build/index.js",
-    "start:dev": "cross-env NODE_ENV=development ts-node-dev src/index"
+    "start:dev": "nodemon src/index"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
