@@ -1,8 +1,15 @@
-import express, { Express, Request, Response } from 'express';
-//import cors from 'cors';
-//import cookieParser from 'cookie-parser';
+import express from 'express';
+import dotenv from 'dotenv';
+//import 'dotenv/config';
 
-const PORT = 5000;
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+console.log(process.env.PORT);
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 const start = async () => {

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/node": "^18.14.6",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -16,7 +17,7 @@
   "scripts": {
     "tsc": "tsc",
     "start": "tsc && node build/index.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon src/index"
+    "start:dev": "cross-env NODE_ENV=development ts-node-dev src/index"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
