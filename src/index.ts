@@ -1,12 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-//import 'dotenv/config';
 
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env`,
 });
 console.log(process.env.PORT);
 const PORT = process.env.PORT || 5000;
