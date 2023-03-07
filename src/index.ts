@@ -1,19 +1,18 @@
 import express from 'express';
 import 'dotenv/config';
-import router from './routes';
-import dbConfig from './db';
-
-// import cors from 'cors';
-// import cookieParser from 'cookie-parser';
+import { dbConfig } from './db';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+// import router from './router';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('HELLO POSTGRES FF');
-});
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
-app.get('/api', router);
+// app.get('/api', router);
 
 const start = async () => {
   try {
