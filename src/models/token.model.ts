@@ -1,14 +1,16 @@
-import { DataTypes } from 'sequelize';
-import { dbConfig } from '../db';
+import {DataType, ForeignKey} from 'sequelize-typescript';
 
-// export interface TokenSchemaAttributes {
-//   id: number;
-//   refreshToken: string;
-// }
+import { Table, Column, Model } from 'sequelize-typescript';
+import User from './user.model';
 
-export const TokenSchema = dbConfig.define('token', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  refreshToken: { type: DataTypes.STRING, allowNull: false },
-});
+@Table
+class Token extends Model {
+  @Column (DataType.TEXT)
+  refreshToken!: string;
 
-// export default TokenSchema;
+  @ForeignKey(() => User)
+  @Column
+  public userId!: number;
+}
+
+export default Token

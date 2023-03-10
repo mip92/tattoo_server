@@ -1,24 +1,46 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import { dbConfig } from '../db';
+import { Table, Column, Model, HasMany, HasOne, IsDate } from 'sequelize-typescript';
+import Role from './role.model ';
+import Token from './token.model';
+import {DataType} from 'sequelize-typescript';
+import { Optional } from 'sequelize';
 
-// export interface UserSchemaAttributes {
-//   id: number;
-//   email: string;
-//   password: string;
-//   role: string;
-//   name: string;
-//   phone: string;
-//   instagram: string;
-// }
+interface UserAttributes {
+  id: number;
+  name: string;
+  birthday: Date;
+  email: string;
+  password: string;
+  phone: string;
+  instagram: string;
+  role: Role;
+  tokem: Token[];
+  azaza: number
+}
 
-export const UserSchema = dbConfig.define('user', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  email: { type: DataTypes.STRING, unique: true },
-  password: { type: DataTypes.STRING },
-  role: { type: DataTypes.STRING, defaultValue: 'USER' },
-  name: { type: DataTypes.STRING },
-  phone: { type: DataTypes.STRING },
-  instagram: { type: DataTypes.STRING },
-});
+interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
-// export default UserSchema;
+@Table
+class User extends Model<UserAttributes, UserCreationAttributes> {
+  @Column(DataType.TEXT)
+  name!: string;
+  
+  @Column(DataType.TEXT)
+  email!: string;
+
+  @Column(DataType.TEXT)
+  password!: string;
+  
+  @Column(DataType.TEXT)
+  phone!: string;
+
+  @Column(DataType.TEXT)
+  instagram!: string;
+
+  @HasOne(() => Role)
+  role!: Role;
+
+  @HasMany(() => Token)
+  tokem!: Token[]
+}
+
+export default User
